@@ -20,6 +20,35 @@ MODULE Module1
     CONST robtarget PlaceP5:=[[-260,0,-210],[0,0.923879532,0.382683433,0],[-2,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
     CONST robtarget PickBoxC_3:=[[0,250,210],[0,-0.382683433,0.923879532,0],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
     
+    PROC main()
+        MoveL Home,v1000,z100,TCPVentosaTool\WObj:=wobj0;
+        PathPlaceP2;
+        PathPickBoxA;
+        WHILE TRUE DO
+            IF DI_01=1 THEN
+                PathPickBoxA;                
+            ELSEIF DI_02=1 THEN
+                PathPickBoxC; 
+            ELSEIF DI_03=1 THEN
+                PathPickBoxE; 
+            ENDIF
+            IF DI_04=1 THEN
+                PathPlaceP1;                
+            ELSEIF DI_05=1 THEN
+                PathPlaceP2;
+            ELSEIF DI_06=1 THEN
+                PathPlaceP3;
+            ELSEIF DI_07=1 THEN
+                PathPlaceP4;
+            ELSEIF DI_08=1 THEN
+                PathPlaceP5;
+            ELSEIF DI_09=1 THEN
+                PathPlaceP6;
+            ENDIF
+            
+        ENDWHILE
+
+    ENDPROC    
 PROC PathPickBoxA()
         MoveL HPickBoxA,v1000,z100,TCPVentosaTool\WObj:=WO_Pick;
         MoveL PickBoxA,v500,fine,TCPVentosaTool\WObj:=WO_Pick;
@@ -101,35 +130,7 @@ PROC PathPickBoxA()
         MoveL HPlaceP5,v1000,z100,TCPVentosaTool\WObj:=WO_Place;
         MoveL Home,v1000,z100,TCPVentosaTool\WObj:=wobj0;
     ENDPROC
-    PROC main()
-        MoveL Home,v1000,z100,TCPVentosaTool\WObj:=wobj0;
-        PathPlaceP2;
-        PathPickBoxA;
-        WHILE TRUE DO
-            IF DI_01=1 THEN
-                PathPickBoxA;                
-            ELSEIF DI_02=1 THEN
-                PathPickBoxC; 
-            ELSEIF DI_03=1 THEN
-                PathPickBoxE; 
-            ENDIF
-            IF DI_04=1 THEN
-                PathPlaceP1;                
-            ELSEIF DI_05=1 THEN
-                PathPlaceP2;
-            ELSEIF DI_06=1 THEN
-                PathPlaceP3;
-            ELSEIF DI_07=1 THEN
-                PathPlaceP4;
-            ELSEIF DI_08=1 THEN
-                PathPlaceP5;
-            ELSEIF DI_09=1 THEN
-                PathPlaceP6;
-            ENDIF
-            
-        ENDWHILE
 
-    ENDPROC
  
     
 ENDMODULE
