@@ -324,3 +324,5 @@ Finally the full simulation is executed, a video prove can be found [here](https
 ## Conclusions
 
 During the deveploment of the lab, specially with the second part, some doubts a
+
+Tools such as Robotstudio allow us to learn more about the way robots can help in an industrial environment. For us as engineers is really important to know how processes and routines can be controlled using different I/O signals. In the case of the second task of this lab, this was easily achieved using an Smart Object that allowed us to control signals of detachment. However, it is really important to realize that in real life there are many other things that must be considered. Even with a simulation, there are many things that can only be learned directly with the physics of the objects. 
