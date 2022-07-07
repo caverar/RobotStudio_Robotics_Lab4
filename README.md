@@ -114,7 +114,7 @@ The two images bellow show the synchronized environment, executing each trajecto
 
 The full simulation can bee seen [here](https://www.youtube.com/watch?v=tKo-fJIsRrs)
 
-For the physical implementation a DSQC 652 module like the one in the image bellow, is needed to add I/O support to the controller, this module uses a comunication protocol called DeviceNet to translate digital data to 24 volt signals.
+For the physical implementation a DSQC 652 module like the one in the image bellow, is needed to add I/O support to the controller, this module uses a communication protocol called DeviceNet to translate digital data to 24 volt signals.
 
 ![iomod](images/IOM.png)
 
@@ -131,9 +131,9 @@ Finally the physical implementation can be seen [here](https://www.youtube.com/w
 
 The second part of the laboratory proposes the development of a pick and place task, using a pneumatic actuator to pick up one of three objects depending on the actuation of three buttons (one button for each object), and then put it in one of six predefined positions according to the actuation of six different buttons.
 
-The selected actuator is a suction cup due to the aviability of a free CAD model [here](https://grabcad.com/library/vacuum-grippers-robotiq-1) that allow us to execute a good simulation of the task.
+The selected actuator is a suction cup due to the availability of a free CAD model [here](https://grabcad.com/library/vacuum-grippers-robotiq-1) that allow us to execute a good simulation of the task.
 
-At physical level we will need a Pneumatic circuit including a Compressor to generate the pressurized air, a maintenance unit to properly filter and lubricate the system, a sutcion cup to pick the objects, a vecuum generator that generates negative pressure thanks to the venturi effect, and finally a  4/2 way pneumatic valve so is posible to enable or disable the vacuum generator which means that the operation of the suction cup can be controlled at will at any time through the valve solenoid. The image bellow show the full diagram including an illustrative image of the real element.
+At physical level we will need a Pneumatic circuit including a Compressor to generate the pressurized air, a maintenance unit to properly filter and lubricate the system, a suction cup to pick the objects, a vacuum generator that generates negative pressure thanks to the venturi effect, and finally a  4/2 way pneumatic valve so is posible to enable or disable the vacuum generator which means that the operation of the suction cup can be controlled at will at any time through the valve solenoid. The image bellow show the full diagram including an illustrative image of the real element.
 
 ![im9](images/fullneu.png)
 
@@ -141,13 +141,13 @@ This circuit is simulated with FluidSim to ensure its appropriate behavior.
 
 ![im10](images/neu1.png)  
 
-THe image bellow shows a simplified diagram of the full system, including a contactor due to the fact that the DSQC 652 signals are only logic signals so they probably can't supply enough current to drive the solenoid.
+THe image bellow shows a simplified diagram of the full system, including a contactor due to the fact that the DSQC652 signals are only logic signals so they probably can't supply enough current to drive the solenoid.
 
 ![diag2](images/diag2.png)
 
 The tool is imported to RobotStudio using Fusion360 to open the .step file and exported as a .sat file so RobotStudio is able to open it.
 
-Three boxes with diffrent colors were design inside RobotStudio to emulate the real objects, each one with a volume of 200mm x 200mm x 200mm, in addition to a 3x2 pallet with six 240mm x 240mm compartments with 20mm gap between them. The full setup is showed in the image bellow.
+Three boxes with different colors were design inside RobotStudio to emulate the real objects, each one with a volume of 200mm x 200mm x 200mm, in addition to a 3x2 pallet with six 240mm x 240mm compartments with 20mm gap between them. The full setup is showed in the image bellow.
 
 ![im5](images/robot.png)
 
@@ -155,7 +155,7 @@ In order to be able to move the objects and allow interactions between them, som
 
 ![im2](images/physics_pallet.png)
 
-In the same way as the first part, the digital input and outputs are defined, in this case there is 3 buttons to select which box should be pick it, and 6 more to select in which of the 6 compartments should be place the box. An aditional output called `DO_Ventosa` is defined to allow to control the gripper, in this case turn on or off the valve of the suction cup. All of this is done in the `Coniguration -I/O System` option in RobotStudio.
+In the same way as the first part, the digital input and outputs are defined, in this case there is 3 buttons to select which box should be pick it, and 6 more to select in which of the 6 compartments should be place the box. An additional output called `DO_Ventosa` is defined to allow to control the gripper, in this case turn on or off the valve of the suction cup. All of this is done in the `Configuration -I/O System` option in RobotStudio.
 
 ![im3](images/signals.png)
 
@@ -163,11 +163,11 @@ After the signals are created we need te restart the controller in the same way 
 
 ![im8](images/restart.png)
 
-We can be verify if the controller is ready to use the signals by looking at the saimulation tab in the right panel, the image bellow show us all the signals we need.
+We can be verify if the controller is ready to use the signals by looking at the simulation tab in the right panel, the image bellow show us all the signals we need.
 
 ![im4](images/IO_Signals.png)
 
-To be able to move the objects with the gripper, a smart component is defined for the tool, this option allow us to attach a digital signal with the enable of the smart component so it can fix nearby objects to himself which allows to simulate the beahavior of the real suction cup. The connection between the signal and the smart component is showed in the image bellow.
+To be able to move the objects with the gripper, a smart component is defined for the tool, this option allow us to attach a digital signal with the enable of the smart component so it can fix nearby objects to himself which allows to simulate the behavior of the real suction cup. The connection between the signal and the smart component is showed in the image bellow.
 
 ![im1](images/StationLogic.png)
 
@@ -323,4 +323,3 @@ Finally the full simulation is executed, a video prove can be found [here](https
 
 ## Conclusions
 
-During the deveploment of the lab, specially with the second part, some doubts a
