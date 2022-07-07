@@ -67,7 +67,7 @@ MODULE Module1
                 Path_Lines;
             ENDIF
         ENDWHILE
-        
+
     ENDPROC
     PROC Path_A()
         MoveJ Target_Home,v400,fine,Marcador\WObj:=wobj0;
@@ -118,7 +118,7 @@ For the physical implementation a DSQC 652 module like the one in the image bell
 
 ![iomod](images/IOM.png)
 
-In addition to that a control box with some buttons is needed, fortunately the lab already has one properly connected to the  DSQC 652 module like the one in the image bellow.
+In addition to that a control box with some buttons is needed, fortunately the lab already has one properly connected to the DSQC 652 module like the one in the image bellow.
 ![box](images/controlBox.png)
 
 A simplified diagram of the full connection including the IRB140 is showed bellow for illustrative purposes.
@@ -133,13 +133,13 @@ The second part of the laboratory proposes the development of a pick and place t
 
 The selected actuator is a suction cup due to the availability of a free CAD model [here](https://grabcad.com/library/vacuum-grippers-robotiq-1) that allow us to execute a good simulation of the task.
 
-At physical level we will need a Pneumatic circuit including a Compressor to generate the pressurized air, a maintenance unit to properly filter and lubricate the system, a suction cup to pick the objects, a vacuum generator that generates negative pressure thanks to the venturi effect, and finally a  4/2 way pneumatic valve so is posible to enable or disable the vacuum generator which means that the operation of the suction cup can be controlled at will at any time through the valve solenoid. The image bellow show the full diagram including an illustrative image of the real element.
+At physical level we will need a Pneumatic circuit including a Compressor to generate the pressurized air, a maintenance unit to properly filter and lubricate the system, a suction cup to pick the objects, a vacuum generator that generates negative pressure thanks to the venturi effect, and finally a 4/2 way pneumatic valve so is posible to enable or disable the vacuum generator which means that the operation of the suction cup can be controlled at will at any time through the valve solenoid. The image bellow show the full diagram including an illustrative image of the real element.
 
 ![im9](images/fullneu.png)
 
 This circuit is simulated with FluidSim to ensure its appropriate behavior.
 
-![im10](images/neu1.png)  
+![im10](images/neu1.png)
 
 THe image bellow shows a simplified diagram of the full system, including a contactor due to the fact that the DSQC652 signals are only logic signals so they probably can't supply enough current to drive the solenoid.
 
@@ -201,21 +201,21 @@ MODULE Module1
     CONST robtarget HPlaceP5:=[[-260,0,0],[0,0.923879532,0.382683433,0],[-2,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
     CONST robtarget PlaceP5:=[[-260,0,-210],[0,0.923879532,0.382683433,0],[-2,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
     CONST robtarget PickBoxC_3:=[[0,250,210],[0,-0.382683433,0.923879532,0],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
-    
+
     PROC main()
         MoveL Home,v1000,z100,TCPVentosaTool\WObj:=wobj0;
         PathPlaceP2;
         PathPickBoxA;
         WHILE TRUE DO
             IF DI_01=1 THEN
-                PathPickBoxA;                
+                PathPickBoxA;
             ELSEIF DI_02=1 THEN
-                PathPickBoxC; 
+                PathPickBoxC;
             ELSEIF DI_03=1 THEN
-                PathPickBoxE; 
+                PathPickBoxE;
             ENDIF
             IF DI_04=1 THEN
-                PathPlaceP1;                
+                PathPlaceP1;
             ELSEIF DI_05=1 THEN
                 PathPlaceP2;
             ELSEIF DI_06=1 THEN
@@ -227,10 +227,10 @@ MODULE Module1
             ELSEIF DI_09=1 THEN
                 PathPlaceP6;
             ENDIF
-            
+
         ENDWHILE
 
-    ENDPROC    
+    ENDPROC
 PROC PathPickBoxA()
         MoveL HPickBoxA,v1000,z100,TCPVentosaTool\WObj:=WO_Pick;
         MoveL PickBoxA,v500,fine,TCPVentosaTool\WObj:=WO_Pick;
@@ -323,6 +323,6 @@ Finally the full simulation is executed, a video prove can be found [here](https
 
 ## Conclusions
 
-Setting up all the components to create the path for the TCP was a realtively easy task. After knowing how the software works, it was easy to check and try again if necessary with the help of simulations. However, real life tends to be quite different. It is really important to take into account all the obstacles that may appear in the way when checking the behaviour in a real environment. These kind of things occur not only in an academic space but also in the industry.
+Digital I/O play a fundamental role in robotics, specially in real industrial applications, at the end of the day we can have a complex task programmed with a robot, but without the capability to control at least a simple servo gripper an receiving feedback from the world to know when the task should be executed, the robot turns into a very expensive toy making this practice fundamental in the case of a professional path in industrial robotics.
 
-The tool spring played a fundamental role in the lab due to the board uneveness, it could be seen as a trivial thing in the academic world using a marker, but in a real world industrial application, the spring or a equivalent system could be fundamental for the proper behavior of the tool.
+During the development of the lab, specially with the second part, some doubts arose about a real industrial application, this kind of robots could be very dangerous if not use properly. In this case the IRB140 was only used in debug mode at a fairly slow speed, far from the reality when more velocity in the process means more cost effectiveness for the robot, that means that in the real world the code has to be develop very carefully, adding as many security measures as possible, especially if the robot must work near humans, so a simple code such as the one develop here it wouldn't be enough for a real industrial application, adding sensors and rigorously testing is necessary to ensure proper operation in a real industrial application.
